@@ -4,6 +4,7 @@ require 'cgi'
 require 'faraday'
 require 'digest'
 require 'json'
+require 'px_pay/utils'
 
 module PxPay
   module Request
@@ -57,7 +58,7 @@ module PxPay
       end
 
       def request_time
-        Time.now.strftime('%Y%m%d%I%M%S')
+        @request_time ||= Time.now.strftime('%Y%m%d%I%M%S')
       end
 
       def to_hash
@@ -75,7 +76,7 @@ module PxPay
       end
 
       def sign_value
-        Digest::SHA2.hexdigest(hash_string)
+        PxPay::Utils.sign hash_string, config&.store_key
       end
 
       def api_host

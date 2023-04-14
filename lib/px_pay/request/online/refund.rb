@@ -1,12 +1,23 @@
 # frozen_string_literal: true
 
 require 'px_pay/request/base'
+require 'time'
 
 module PxPay
   module Request
     module Online
       class Refund < Base
         attr_writer :order_id, :bank_transaction_id, :amount, :trade_time
+
+        def trade_time=(trade_time)
+          if trade_time.instance_of? Time
+            @trade_time = trade_time.strftime('%Y%m%d%H%M%S')
+          elsif trade_time.instance_of? String
+            @trade_time = Time.parse(trade_time).strftime('%Y%m%d%H%M%S')
+          else
+            raise ArgumentError, 'trade_time must be Time or String'
+          end
+        end
 
         private
 

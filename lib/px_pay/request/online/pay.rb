@@ -6,9 +6,19 @@ module PxPay
   module Request
     module Online
       class Pay < Base
-        enum_for :device_type, %i[pc mobile app]
-        attr_writer :order_id, :amount, :device_type, :web_confirm_url, :web_cancel_url, :app_confirm_url,
+        attr_writer :order_id, :amount, :web_confirm_url, :web_cancel_url, :app_confirm_url,
                     :app_cancel_url
+
+        def device_type=(device_type)
+          @device_type = case device_type
+                         when :pc
+                           1
+                         when :mobile
+                           2
+                         else
+                           3
+                         end
+        end
 
         private
 
