@@ -5,7 +5,7 @@ require 'px_pay/request/base'
 module PxPay
   module Request
     module Online
-      class Base > PxPay::Request::Base
+      class Base < PxPay::Request::Base
         private
 
         def api_host

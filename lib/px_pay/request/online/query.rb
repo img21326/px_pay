@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'px_pay/request/base'
+require 'px_pay/request/online/base'
 
 module PxPay
   module Request
@@ -23,7 +23,7 @@ module PxPay
         end
 
         def hash_string
-          ["Merchant", @order_id, @request_time].join
+          ['Merchant', @order_id, @request_time].join
         end
 
         def end_point

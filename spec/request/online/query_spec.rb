@@ -8,6 +8,6 @@ RSpec.describe PxPay::Request::Online::Query do
     hash = request.send(:to_hash)
     expect(hash).to eq({})
     expect(request.send(:hash_string)).to eq("Merchant123#{req_time}")
-    expect(request.send(:end_point)).to eq("/Order/Merchant/123/#{req_time}")
+    expect(request.send(:end_point)).to eq("/px-ec/Order/Merchant/123/#{req_time}")
   end
 end
