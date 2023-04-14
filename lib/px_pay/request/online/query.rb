@@ -4,7 +4,7 @@ require 'px_pay/request/base'
 
 module PxPay
   module Request
-    module EC
+    module Online
       class Query < Base
         attr_writer :order_id
 

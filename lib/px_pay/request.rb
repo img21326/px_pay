@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 # require 'jko_pay/request/pos'
-require 'px_pay/request/online'
+require_relative 'request/online/pay'
+require_relative 'request/online/query'
+require_relative 'request/online/refund'
 
 module PxPay
   module Request

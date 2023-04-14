@@ -4,7 +4,7 @@ require 'px_pay/request/base'
 
 module PxPay
   module Request
-    module EC
+    module Online
       class Base > PxPay::Request::Base
         private
 

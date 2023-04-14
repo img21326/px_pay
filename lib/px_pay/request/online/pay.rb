@@ -4,7 +4,7 @@ require 'px_pay/request/base'
 
 module PxPay
   module Request
-    module EC
+    module Online
       class Pay < Base
         enum_for :device_type, %i[pc mobile app]
         attr_writer :order_id, :amount, :device_type, :web_confirm_url, :web_cancel_url, :app_confirm_url,
