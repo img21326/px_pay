@@ -10,6 +10,10 @@ module PxPay
 
         private
 
+        def to_hash
+          {}
+        end
+
         def request_action
           'Order'
         end
@@ -19,7 +23,7 @@ module PxPay
         end
 
         def hash_string
-          "Merchant#{@order_id}#{@request_time}"
+          ["Merchant", @order_id, @request_time].join
         end
 
         def end_point

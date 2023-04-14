@@ -29,7 +29,7 @@ module PxPay
         end
 
         def hash_string
-          "#{@order_id}#{@bank_transaction_id}#{@trade_time}#{@order_id}#{@amount}#{@request_time}"
+          [@order_id, @bank_transaction_id, @trade_time, @order_id, @amount, @request_time].join
         end
       end
     end

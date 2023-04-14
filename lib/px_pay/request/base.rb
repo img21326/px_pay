@@ -23,11 +23,7 @@ module PxPay
       def request
         raise PxPay::Error, 'Missing Store ID' unless config&.store_id
 
-        case request_type
-        when :post
-          res = send_post_request
-        when :get
-          res = send_get_request
+        res = send_request
         response_klass.new(res.body, raw: res)
       end
 
@@ -35,11 +31,11 @@ module PxPay
 
       def post_initialize; end
 
-      def hash_string
-        raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+      def request_type
+        :post
       end
 
-      def request_type
+      def hash_string
         raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
       end
 
@@ -66,16 +62,12 @@ module PxPay
 
       def to_hash
         {
-          req_time: request_time,
+          req_time: request_time
         }
       end
 
-      def send_post_request
-        Faraday.post end_point, request_data, request_header
-      end
-
-      def send_get_request
-        Faraday.get end_point, nil, request_header
+      def send_request
+        Faraday.send request_type, end_point, request_data, request_header
       end
 
       def request_data
