@@ -35,8 +35,6 @@ module PxPay
 
       def post_initialize; end
 
-      def to_hash; end
-
       def hash_string
         raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
       end
@@ -62,12 +60,22 @@ module PxPay
         }
       end
 
+      def request_time
+        Time.now.strftime('%Y%m%d%I%M%S')
+      end
+
+      def to_hash
+        {
+          req_time: request_time,
+        }
+      end
+
       def send_post_request
-        Faraday.post api_host, request_data, request_header
+        Faraday.post end_point, request_data, request_header
       end
 
       def send_get_request
-        Faraday.get api_host, request_data, request_header
+        Faraday.get end_point, nil, request_header
       end
 
       def request_data
@@ -80,6 +88,10 @@ module PxPay
 
       def api_host
         config&.api_host
+      end
+
+      def end_point
+        "#{api_host}/#{request_action}"
       end
     end
   end
