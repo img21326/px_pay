@@ -3,11 +3,12 @@ module PxPay
     PRODUCTION_HOST = ''.freeze
     SANDBOX_HOST = 'https://uat.pxpayplus.com/'.freeze
 
-    attr_accessor :mode, :secret_key, :store_id
+    attr_accessor :mode, :secret_key, :store_id, :store_name
 
     def initialize
       @mode = :sandbox
       @store_id = nil
+      @store_name = nil
       @secret_key = nil
     end
 
