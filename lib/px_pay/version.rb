@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module PxPay
-  VERSION = '0.2.0'
+  VERSION = '0.0.1'
 end

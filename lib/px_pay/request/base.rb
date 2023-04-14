@@ -23,19 +23,22 @@ module PxPay
       def request
         raise PxPay::Error, 'Missing Store ID' unless config&.store_id
 
-        res = send_request
-        "PxPay::Response::#{self.class.name.demodulize}".constantize.new(res.body, raw: res,
-                                                                                   secret_key: config.secret_key)
+        case request_type
+        when :post
+          res = send_post_request
+        when :get
+          res = send_get_request
+        response_klass.new(res.body, raw: res)
       end
 
       private
 
       def post_initialize; end
 
-      def to_hash
-        {
-          StoreID: config.store_id
-        }
+      def to_hash; end
+
+      def hash_string
+        raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
       end
 
       def request_type
@@ -46,29 +49,33 @@ module PxPay
         raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
       end
 
+      def response_klass
+        raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+      end
+
+      def request_header
+        {
+          'Content-Type' => 'text/plain',
+          'PX-MerCode' => config&.store_id,
+          'PX-MerEnName' => config&.store_name || '',
+          'PX-SignValue' => sign_value
+        }
+      end
+
+      def send_post_request
+        Faraday.post api_host, request_data, request_header
+      end
+
+      def send_get_request
+        Faraday.get api_host, request_data, request_header
+      end
+
       def request_data
-        CGI.escape JSON.dump({
-                               Type: request_type,
-                               Action: request_action,
-                               TransactionData: encode_data,
-                               HashDigest: hash_data
-                             })
+        CGI.escape JSON.dump(to_hash)
       end
 
-      def send_request
-        Faraday.post api_host, request_data, 'Content-Type' => 'text/plain'
-      end
-
-      def encode_data
-        @encode_data ||= CGI.escape JSON.dump(to_hash)
-      end
-
-      def hash_data
-        Digest::SHA2.hexdigest("#{request_type}#{request_action}#{encode_data}#{secret_key}")
-      end
-
-      def secret_key
-        config&.secret_key
+      def sign_value
+        Digest::SHA2.hexdigest(hash_string)
       end
 
       def api_host
