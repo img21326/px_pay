@@ -6,7 +6,17 @@ module PxPay
   module Request
     module Online
       class Query < Base
-        attr_writer :order_id
+        attr_writer :order_id, :trade_no_type
+
+        def trade_no_type=(trade_no_type)
+          raise ArgumentError, 'trade_no_type must be Merchant or Px' unless %w[Merchant Px].include?(trade_no_type)
+
+          @trade_no_type = trade_no_type
+        end
+
+        def trade_no_type
+          @trade_no_type || 'Merchant'
+        end
 
         private
 
@@ -23,11 +33,11 @@ module PxPay
         end
 
         def hash_string
-          ['Merchant', @order_id, @request_time].join
+          [trade_no_type, @order_id, @request_time].join
         end
 
         def end_point
-          "#{super}/Merchant/#{@order_id}/#{request_time}"
+          "#{super}/#{trade_no_type}/#{@order_id}/#{request_time}"
         end
       end
     end

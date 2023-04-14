@@ -3,7 +3,7 @@ RSpec.describe PxPay::Request::Online::Refund do
     time = Time.now
     request = PxPay::Request::Online::Refund.new(
       order_id: '123',
-      bank_transaction_id: '456',
+      px_trade_no: '456',
       amount: 100,
       trade_time: time
     )
