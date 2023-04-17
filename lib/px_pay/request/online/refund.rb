@@ -7,7 +7,11 @@ module PxPay
   module Request
     module Online
       class Refund < Base
-        attr_writer :order_id, :px_trade_no, :amount, :trade_time, :remark1, :remark2, :remark3
+        attr_writer :px_trade_no, :amount, :trade_time, :remark1, :remark2, :remark3
+
+        def order_id=(order_id)
+          @order_id = order_id.to_s
+        end
 
         def trade_time=(trade_time)
           if trade_time.instance_of? Time

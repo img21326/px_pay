@@ -6,8 +6,12 @@ module PxPay
   module Request
     module Online
       class Pay < Base
-        attr_writer :order_id, :amount, :web_confirm_url, :web_cancel_url, :app_confirm_url,
+        attr_writer :amount, :web_confirm_url, :web_cancel_url, :app_confirm_url,
                     :app_cancel_url
+
+        def order_id=(order_id)
+          @order_id = order_id.to_s
+        end
 
         def device_type=(device_type)
           @device_type = case device_type

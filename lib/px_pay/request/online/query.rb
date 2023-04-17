@@ -6,7 +6,9 @@ module PxPay
   module Request
     module Online
       class Query < Base
-        attr_writer :order_id, :trade_no_type
+        def order_id=(order_id)
+          @order_id = order_id.to_s
+        end
 
         def trade_no_type=(trade_no_type)
           raise ArgumentError, 'trade_no_type must be Merchant or Px' unless %w[Merchant Px].include?(trade_no_type)
