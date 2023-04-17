@@ -2,7 +2,7 @@ require 'px_pay/response/online/base'
 
 module PxPay
   module Response
-    module Online
+    module Pos
       class Query < Base
         def transaction_id
           @trade_info.dig('mer_trade_no')

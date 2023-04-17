@@ -5,7 +5,7 @@ RSpec.describe PxPay::Response::Online::Query do
     res = PxPay::Response::Online::Query.new(json_data, nil)
     expect(res.success?).to be true
     expect(res.message).to eq('查詢成功')
-    expect(res.order_id).to eq('QW20210101000032')
+    expect(res.transaction_id).to eq('QW20210101000032')
     expect(res.order_type).to eq(:paid)
     expect(res.bank_transaction_id).to eq('PXO023892398239')
     expect(res.trade_time).to eq(Time.parse('20210304170022'))
@@ -26,7 +26,7 @@ RSpec.describe PxPay::Response::Online::Query do
     expect(res.success?).to be true
     expect(res.message).to eq('查詢成功')
     expect(res.order_type).to eq(:refunded)
-    expect(res.order_id).to eq('202101230000002')
+    expect(res.transaction_id).to eq('202101230000002')
     expect(res.bank_transaction_id).to eq('PXO023892398239')
     expect(res.refund_bank_transaction_id).to eq('PXRO023892398239')
     expect(res.trade_time).to eq(Time.parse('20210101093922'))
