@@ -6,12 +6,12 @@ module PxPay
       class Pay < Base
         attr_reader :payment_url, :amount, :trade_amount, :discount_amount, :invo_carrier
 
-        def bank_transaction_id
-          @px_trade_no
+        def transaction_id
+          @mer_trade_no
         end
 
-        def trade_time
-          @trade_time = Time.parse(@px_trade_time) if @px_trade_time.instance_of? String
+        def bank_transaction_id
+          @px_trade_no
         end
 
         def pay_tool
@@ -22,7 +22,7 @@ module PxPay
           @pay_tool_info.dig('tool_name')
         end
 
-        def identity
+        def pay_tool_identity
           @pay_tool_info.dig('identity')
         end
       end

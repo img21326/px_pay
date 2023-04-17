@@ -3,7 +3,8 @@ require 'px_pay/response/pos/base'
 module PxPay
   module Response
     module Pos
-      class Reversal < Base
+      class MemberInfo < Base
+        attr_reader :mem_card_no, :invo_carrier, :print_receipt, :trans_id
       end
     end
   end
