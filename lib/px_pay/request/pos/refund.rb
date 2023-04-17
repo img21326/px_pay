@@ -21,8 +21,12 @@ module PxPay
           @pos_id = pos_id.to_s
         end
 
-        def order_id=(order_id)
-          @order_id = order_id.to_s
+        def transaction_id=(transaction_id)
+          @transaction_id = transaction_id.to_s
+        end
+
+        def refund_transaction_id=(refund_transaction_id)
+          @refund_transaction_id = refund_transaction_id.to_s
         end
 
         def bank_transaction_id=(bank_transaction_id)
@@ -41,14 +45,18 @@ module PxPay
 
         private
 
+        def response_klass
+          PxPay::Response::Pos::Refund
+        end
+
         def to_hash
           super.merge(
             store_id: @store_id,
             store_name: @store_name,
             pos_id: @pos_id,
             pos_trade_time: @trade_time,
-            ori_mer_trade_no: @order_id,
-            mer_trade_no: @order_id,
+            ori_mer_trade_no: @transaction_id,
+            mer_trade_no: @refund_transaction_id,
             ori_px_trade_no: @bank_transaction_id,
             none_discount_amount: 0,
             none_feedback_amount: 0,
