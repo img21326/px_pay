@@ -4,12 +4,20 @@ module PxPay
   module Response
     module Online
       class Query < Base
-        enum_for :order_type, %w[not_found paid refunded]
-        enum_for :pay_status, %w[unpaid paid]
-        attr_reader :order_type
-
         def order_id
           @trade_info.dig('mer_trade_no')
+        end
+
+        def order_type
+          case @order_type
+          when 0
+            return :not_found
+          when 1
+            return :paid
+          when 2
+            return :refunded
+          end
+          nil
         end
 
         def bank_transaction_id
@@ -17,7 +25,7 @@ module PxPay
         end
 
         def trade_time
-          @trade_info.dig('trade_time')
+          @trade_time ||= Time.parse(@trade_info.dig('trade_time'))
         end
 
         def amount
@@ -37,7 +45,14 @@ module PxPay
         end
 
         def pay_status
-          @trade_info.dig('pay_status')
+          status = @trade_info.dig('pay_status')
+          case status
+          when 0
+            return :unpaid
+          when 1
+            return :paid
+          end
+          nil
         end
 
         def pay_tool
@@ -45,11 +60,11 @@ module PxPay
         end
 
         def pay_tool_name
-          @pay_tool_info.dig('pay_tool_info', 'tool_name')
+          @trade_info.dig('pay_tool_info', 'tool_name')
         end
 
         def pay_identity
-          @pay_tool_info.dig('pay_tool_info', 'identity')
+          @trade_info.dig('pay_tool_info', 'identity')
         end
 
         def refund_bank_transaction_id

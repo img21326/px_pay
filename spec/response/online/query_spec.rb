@@ -1,13 +1,22 @@
 RSpec.describe PxPay::Request::Online::Query do
-  it 'basic' do
-    time = Time.now
-    request = PxPay::Request::Online::Query.new(
-      order_id: '123'
-    )
-    req_time = request.send(:request_time)
-    hash = request.send(:to_hash)
-    expect(hash).to eq({})
-    expect(request.send(:hash_string)).to eq("Merchant123#{req_time}")
-    expect(request.send(:end_point)).to eq("/px-ec/Order/Merchant/123/#{req_time}")
+  it 'paid' do
+    json_string = '{ "status_code": "0000", "status_message": "查詢成功", "order_type": 1, "trade_info": { "mer_trade_no": "QW20210101000032", "transaction_id": "20210304000001", "px_trade_no": "PXO023892398239", "trade_time": "20210304170022", "amount": 300, "trade_amount": 277, "discount_amount": 23, "pay_status": 1, "invo_carrier": "/NFVIAZP", "pay_tool_info": { "pay_tool": 1, "tool_name": "華泰銀行", "identity": "123456******7890" } } }'
+    json_data = JSON.parse(json_string)
+    res = PxPay::Response::Online::Query.new(json_data, nil)
+    expect(res.success?).to be true
+    expect(res.message).to eq('查詢成功')
+    expect(res.order_id).to eq('QW20210101000032')
+    expect(res.order_type).to eq(:paid)
+    expect(res.order_id).to eq('QW20210101000032')
+    expect(res.bank_transaction_id).to eq('PXO023892398239')
+    expect(res.trade_time).to eq(Time.parse('20210304170022'))
+    expect(res.amount).to eq(300)
+    expect(res.trade_amount).to eq(277)
+    expect(res.discount_amount).to eq(23)
+    expect(res.invo_carrier).to eq('/NFVIAZP')
+    expect(res.pay_tool).to eq(1)
+    expect(res.pay_tool_name).to eq('華泰銀行')
+    expect(res.pay_identity).to eq('123456******7890')
+    expect(res.pay_status).to eq(:paid)
   end
 end

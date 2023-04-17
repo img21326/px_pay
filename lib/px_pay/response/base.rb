@@ -15,7 +15,7 @@ module PxPay
         end
       end
 
-      def http_status_code 
+      def http_status_code
         @raw.status
       end
 
