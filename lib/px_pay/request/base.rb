@@ -23,6 +23,7 @@ module PxPay
 
       def request
         raise PxPay::Error, 'Missing Store ID' unless config&.store_id
+        raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
         res = send_request
         response_klass.new(res.body, raw: res)
@@ -52,7 +53,7 @@ module PxPay
         {
           'Content-Type' => 'text/plain',
           'PX-MerCode' => config&.store_id,
-          'PX-MerEnName' => config&.store_name || '',
+          'PX-MerEnName' => config&.store_name,
           'PX-SignValue' => sign_value
         }
       end
