@@ -40,6 +40,10 @@ module PxPay
           'CreateOrder'
         end
 
+        def response_klass
+          PxPay::Response::Online::Pay
+        end
+
         def request_type
           :post
         end

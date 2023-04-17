@@ -34,6 +34,10 @@ module PxPay
           )
         end
 
+        def response_klass
+          PxPay::Response::Online::Refund
+        end
+
         def request_action
           'Refund'
         end

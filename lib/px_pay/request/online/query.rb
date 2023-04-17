@@ -24,6 +24,10 @@ module PxPay
           {}
         end
 
+        def response_klass
+          PxPay::Response::Online::Query
+        end
+
         def request_action
           'Order'
         end
