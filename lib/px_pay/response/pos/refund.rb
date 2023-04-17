@@ -1,8 +1,8 @@
-require 'px_pay/response/online/base'
+require 'px_pay/response/pos/base'
 
 module PxPay
   module Response
-    module Online
+    module Pos
       class Refund < Base
         attr_reader :amount, :discount_amount, :trade_amount, :invo_carrier
 
@@ -12,14 +12,6 @@ module PxPay
 
         def bank_transaction_id
           @px_trade_no
-        end
-
-        def refund_bank_transaction_id
-          @refund_px_trade_no
-        end
-
-        def trade_time
-          @trade_time = Time.parse(@trade_time) if @trade_time.instance_of? String
         end
       end
     end
