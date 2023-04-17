@@ -74,7 +74,7 @@ module PxPay
         end
 
         def hash_string
-          [@store_id, @pos_id, @trade_time, @bank_transaction_id, @order_id, @amount, request_time].join
+          [@store_id, @pos_id, @trade_time, @bank_transaction_id, @refund_transaction_id, @amount, request_time].join
         end
       end
     end

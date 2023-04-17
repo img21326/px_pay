@@ -5,7 +5,7 @@ require 'px_pay/request/pos/base'
 module PxPay
   module Request
     module Pos
-      class Pay < Base
+      class Reversal < Base
         def store_id=(store_id)
           @store_id = store_id.to_s
         end
@@ -32,7 +32,7 @@ module PxPay
           @transaction_id = transaction_id.to_s
         end
 
-        attr_writer :pay_token, :amount, :remark1, :remark2, :remark3
+        attr_writer :pay_token, :amount
 
         private
 
@@ -44,23 +44,16 @@ module PxPay
             pos_trade_time: @trade_time,
             mer_trade_no: @transaction_id,
             pay_token: @pay_token,
-            amount: @amount,
-            none_discount_amount: 0,
-            none_feedback_amount: 0,
-            remark1: @remark1 || '',
-            remark2: @remark2 || '',
-            remark3: @remark3 || '',
-            marketing: [],
-            products: []
+            amount: @amount
           )
         end
 
         def response_klass
-          PxPay::Response::Pos::Pay
+          PxPay::Response::Pos::Reversal
         end
 
         def request_action
-          'Payment'
+          'Reversal'
         end
 
         def request_type
