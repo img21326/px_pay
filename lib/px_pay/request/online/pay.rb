@@ -15,8 +15,10 @@ module PxPay
                            1
                          when :mobile
                            2
-                         else
+                         when :app
                            3
+                         else
+                           raise ArgumentError, 'device_type must be :pc, :mobile or :app'
                          end
         end
 
