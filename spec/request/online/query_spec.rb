@@ -2,7 +2,7 @@ RSpec.describe PxPay::Request::Online::Query do
   it 'basic' do
     time = Time.now
     request = PxPay::Request::Online::Query.new(
-      order_id: '123'
+      transaction_id: '123'
     )
     req_time = request.send(:request_time)
     hash = request.send(:to_hash)

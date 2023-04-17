@@ -1,7 +1,7 @@
 RSpec.describe PxPay::Request::Online::Pay do
   it 'basic' do
     request = PxPay::Request::Online::Pay.new(
-      order_id: '123',
+      transaction_id: '123',
       amount: 100,
       device_type: :pc,
       web_confirm_url: 'http://example.com/confirm',
