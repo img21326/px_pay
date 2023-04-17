@@ -6,7 +6,7 @@ require 'digest'
 module PxPay
   module Response
     class Base
-      attr_reader :raw
+      attr_reader :raw, :status_code
 
       def initialize(params, raw)
         @raw = raw
@@ -15,8 +15,12 @@ module PxPay
         end
       end
 
-      def status_code
+      def http_status_code 
         @raw.status
+      end
+
+      def message
+        @status_message
       end
 
       def success?

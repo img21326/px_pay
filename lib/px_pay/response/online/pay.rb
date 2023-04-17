@@ -1,6 +1,6 @@
 require 'px_pay/response/online/base'
 
-module JkoPay
+module PxPay
   module Response
     module Online
       class Pay < Base
