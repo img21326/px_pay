@@ -4,9 +4,9 @@ module PxPay
   module Response
     module Online
       class Refund < Base
-        attr_reader :amount, :discount_amount, :trade_amount
+        attr_reader :amount, :discount_amount, :trade_amount, :invo_carrier
 
-        def order_id
+        def transaction_id
           @mer_trade_no
         end
 
