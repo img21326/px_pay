@@ -1,4 +1,4 @@
-RSpec.describe PxPay::Request::Online::Pay do
+RSpec.describe PxPay::Response::Online::Pay do
   it 'basic' do
     json_string = '{"status_code": "0000","status_message": "交易成功","transaction_id": "20210304000001","payment_url": "https://xxx.xxx.xxx/pxplus_ec/page_redirect?data=aHR0cHM6Ly","qrcode": "https://xxx.xxx.xxx/ec/qrcode?data=aHR0cHM6Ly"}'
     json_data = JSON.parse(json_string)

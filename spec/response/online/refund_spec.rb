@@ -1,19 +1,16 @@
-RSpec.describe PxPay::Request::Online::Refund do
+RSpec.describe PxPay::Response::Online::Refund do
   it 'basic' do
-    time = Time.now
-    request = PxPay::Request::Online::Refund.new(
-      order_id: '123',
-      px_trade_no: '456',
-      amount: 100,
-      trade_time: time
-    )
-    req_time = request.send(:request_time)
-    hash = request.send(:to_hash)
-    expect(hash[:mer_trade_no]).to eq('123')
-    expect(hash[:amount]).to eq(100)
-    expect(hash[:px_trade_no]).to eq('456')
-    expect(hash[:refund_mer_trade_no]).to eq('123')
-    expect(hash[:trade_time]).to eq(time.strftime('%Y%m%d%H%M%S'))
-    expect(request.send(:hash_string)).to eq("123456#{time.strftime('%Y%m%d%H%M%S')}123100#{req_time}")
+    json_string = '{ "status_code": "0000", "status_message": "交易成功", "mer_trade_no":"202101230000002", "px_trade_no": "PXO023892398239", "refund_mer_trade_no":"202101230000001", "refund_px_trade_no": "PXRO023892398239", "trade_time":"20210101093922", "amount": 300, "trade_amount": 277, "discount_amount": 23 }'
+    json_data = JSON.parse(json_string)
+    res = PxPay::Response::Online::Refund.new(json_data, nil)
+    expect(res.success?).to be true
+    expect(res.message).to eq('交易成功')
+    expect(res.order_id).to eq('202101230000002')
+    expect(res.bank_transaction_id).to eq('PXO023892398239')
+    expect(res.refund_bank_transaction_id).to eq('PXRO023892398239')
+    expect(res.trade_time).to eq(Time.parse('20210101093922'))
+    expect(res.amount).to eq(300)
+    expect(res.trade_amount).to eq(277)
+    expect(res.discount_amount).to eq(23)
   end
 end

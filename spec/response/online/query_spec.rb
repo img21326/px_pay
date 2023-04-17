@@ -1,4 +1,4 @@
-RSpec.describe PxPay::Request::Online::Query do
+RSpec.describe PxPay::Response::Online::Query do
   it 'paid' do
     json_string = '{ "status_code": "0000", "status_message": "查詢成功", "order_type": 1, "trade_info": { "mer_trade_no": "QW20210101000032", "transaction_id": "20210304000001", "px_trade_no": "PXO023892398239", "trade_time": "20210304170022", "amount": 300, "trade_amount": 277, "discount_amount": 23, "pay_status": 1, "invo_carrier": "/NFVIAZP", "pay_tool_info": { "pay_tool": 1, "tool_name": "華泰銀行", "identity": "123456******7890" } } }'
     json_data = JSON.parse(json_string)

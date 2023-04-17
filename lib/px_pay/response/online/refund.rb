@@ -4,7 +4,7 @@ module PxPay
   module Response
     module Online
       class Refund < Base
-        attr_reader :amount, :discount_amount, :trade_time
+        attr_reader :amount, :discount_amount, :trade_amount
 
         def order_id
           @mer_trade_no
@@ -18,8 +18,8 @@ module PxPay
           @refund_px_trade_no
         end
 
-        def refund_amount
-          @trade_amount
+        def trade_time
+          @trade_time = Time.parse(@trade_time) if @trade_time.instance_of? String
         end
       end
     end
