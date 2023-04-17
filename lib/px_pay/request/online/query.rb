@@ -39,7 +39,7 @@ module PxPay
         end
 
         def hash_string
-          [trade_no_type, @order_id, @request_time].join
+          [trade_no_type, @order_id, request_time].join
         end
 
         def end_point

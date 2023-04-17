@@ -7,7 +7,7 @@ module PxPay
   module Request
     module Online
       class Refund < Base
-        attr_writer :px_trade_no, :amount, :trade_time, :remark1, :remark2, :remark3
+        attr_writer :bank_transaction_id, :amount, :trade_time, :remark1, :remark2, :remark3
 
         def order_id=(order_id)
           @order_id = order_id.to_s
@@ -28,7 +28,7 @@ module PxPay
         def to_hash
           super.merge(
             mer_trade_no: @order_id,
-            px_trade_no: @px_trade_no,
+            px_trade_no: @bank_transaction_id,
             refund_mer_trade_no: @order_id,
             amount: @amount,
             trade_time: @trade_time,
@@ -47,7 +47,7 @@ module PxPay
         end
 
         def hash_string
-          [@order_id, @px_trade_no, @trade_time, @order_id, @amount, @request_time].join
+          [@order_id, @px_trade_no, @trade_time, @order_id, @amount, request_time].join
         end
       end
     end

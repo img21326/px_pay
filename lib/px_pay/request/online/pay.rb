@@ -53,7 +53,7 @@ module PxPay
         end
 
         def hash_string
-          [@order_id, @amount, @device_type, @request_time].join
+          [@order_id, @amount, @device_type, request_time].join
         end
       end
     end
