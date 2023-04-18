@@ -8,6 +8,7 @@ require_relative 'request/pos/member_info'
 require_relative 'request/pos/pay'
 require_relative 'request/pos/query'
 require_relative 'request/pos/refund'
+require_relative 'request/pos/reversal'
 
 module PxPay
   module Request
