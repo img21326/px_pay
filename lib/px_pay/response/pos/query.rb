@@ -8,6 +8,10 @@ module PxPay
           @trade_info.dig('mer_trade_no')
         end
 
+        def refund_transaction_id
+          @trade_info.dig('refund_mer_trade_no')
+        end
+
         def order_type
           case @order_type
           when 0
@@ -24,8 +28,12 @@ module PxPay
           @trade_info.dig('px_trade_no')
         end
 
+        def refund_bank_transaction_id
+          @trade_info.dig('refund_px_trade_no')
+        end
+
         def trade_time
-          @trade_time ||= Time.parse(@trade_info.dig('px_trade_time'))
+          @trade_time ||= Time.parse(@trade_info.dig('trade_time'))
         end
 
         def amount
