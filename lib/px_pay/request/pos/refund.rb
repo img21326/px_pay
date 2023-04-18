@@ -8,7 +8,7 @@ module PxPay
   module Request
     module Pos
       class Refund < Base
-        attr_writer :amount, :trade_time, :remark1, :remark2, :remark3
+        attr_writer :amount, :remark1, :remark2, :remark3
 
         def store_id=(store_id)
           @store_id = store_id.to_s
