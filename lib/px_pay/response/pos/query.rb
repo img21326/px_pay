@@ -24,12 +24,8 @@ module PxPay
           nil
         end
 
-        def bank_transaction_id
+        def px_trade_no
           @trade_info.dig('px_trade_no')
-        end
-
-        def refund_bank_transaction_id
-          @trade_info.dig('refund_px_trade_no')
         end
 
         def trade_time
