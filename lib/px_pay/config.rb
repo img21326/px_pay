@@ -1,7 +1,7 @@
 module PxPay
   class Config
     PRODUCTION_HOST = ''.freeze
-    SANDBOX_HOST = 'https://uat.pxpayplus.com/'.freeze
+    SANDBOX_HOST = 'https://uat.pxpayplus.com'.freeze
 
     attr_accessor :mode, :secret_key, :store_id, :store_name
 

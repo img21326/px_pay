@@ -4,18 +4,14 @@ module PxPay
   module Response
     module Online
       class Refund < Base
-        attr_reader :amount, :discount_amount, :trade_amount
+        attr_reader :amount, :discount_amount, :trade_amount, :px_trade_no, :refund_px_trade_no
 
-        def order_id
+        def transaction_id
           @mer_trade_no
         end
 
-        def bank_transaction_id
-          @px_trade_no
-        end
-
-        def refund_bank_transaction_id
-          @refund_px_trade_no
+        def refund_transaction_id
+          @refund_mer_trade_no
         end
 
         def trade_time

@@ -4,8 +4,12 @@ module PxPay
   module Response
     module Online
       class Query < Base
-        def transaction_id 
+        def transaction_id
           @trade_info.dig('mer_trade_no')
+        end
+
+        def refund_transaction_id
+          @trade_info.dig('refund_mer_trade_no')
         end
 
         def order_type
@@ -20,8 +24,12 @@ module PxPay
           nil
         end
 
-        def bank_transaction_id
+        def px_trade_no
           @trade_info.dig('px_trade_no')
+        end
+
+        def bank_transaction_id
+          @trade_info.dig('transaction_id')
         end
 
         def trade_time
@@ -67,7 +75,7 @@ module PxPay
           @trade_info.dig('pay_tool_info', 'identity')
         end
 
-        def refund_bank_transaction_id
+        def refund_px_trade_no
           @trade_info.dig('refund_px_trade_no')
         end
       end

@@ -51,7 +51,7 @@ module PxPay
 
       def request_header
         {
-          'Content-Type' => 'application/json',
+          'Content-Type' => 'application/json;charset=utf-8;',
           'PX-MerCode' => config&.store_id,
           'PX-MerEnName' => config&.store_name,
           'PX-SignValue' => sign_value
@@ -68,16 +68,24 @@ module PxPay
         }
       end
 
+      def conn
+        @conn ||= Faraday.new do |faraday|
+          faraday.options.timeout = 15
+        end
+      end
+
       def send_request
-        Faraday.send request_type, end_point, request_data, request_header
+        p request_data
+        p request_header
+        conn.send request_type, end_point, request_data, request_header
       end
 
       def request_data
-        CGI.escape JSON.dump(to_hash)
+        JSON.dump(to_hash)
       end
 
       def sign_value
-        PxPay::Utils.sign hash_string, config&.store_key
+        PxPay::Utils.sign hash_string, config&.secret_key
       end
 
       def api_host

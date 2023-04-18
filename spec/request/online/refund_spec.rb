@@ -4,7 +4,7 @@ RSpec.describe PxPay::Request::Online::Refund do
     request = PxPay::Request::Online::Refund.new(
       transaction_id: '123',
       refund_transaction_id: '123',
-      bank_transaction_id: '456',
+      px_trade_no: '456',
       amount: 100,
       trade_time: time
     )
