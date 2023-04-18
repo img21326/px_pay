@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'px_pay/request/online/base'
+require 'px_pay/response/online/pay'
 
 module PxPay
   module Request
