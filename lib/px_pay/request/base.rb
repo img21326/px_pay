@@ -26,6 +26,9 @@ module PxPay
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
         res = send_request
+        p res
+        raise PxPay::Error, "HTTP Status Code: #{res.status}, Body:#{res.body}" unless res.status == 200
+
         response_klass.new(JSON.parse(res.body), raw: res)
       end
 

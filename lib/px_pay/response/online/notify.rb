@@ -8,18 +8,6 @@ module PxPay
           @mer_trade_no
         end
 
-        def order_type
-          case @order_type
-          when 0
-            return :not_found
-          when 1
-            return :paid
-          when 2
-            return :refunded
-          end
-          nil
-        end
-
         def bank_transaction_id
           @transaction_id
         end
