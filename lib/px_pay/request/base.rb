@@ -51,7 +51,7 @@ module PxPay
 
       def request_header
         {
-          'Content-Type' => 'text/plain',
+          'Content-Type' => 'application/json',
           'PX-MerCode' => config&.store_id,
           'PX-MerEnName' => config&.store_name,
           'PX-SignValue' => sign_value
