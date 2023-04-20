@@ -4,7 +4,11 @@ module PxPay
   module Response
     module Online
       class Notify < Base
-        def transaction_id
+        def sign_value
+          @raw.headers['PX-SignValue']
+        end
+
+        def order_id
           @mer_trade_no
         end
 

@@ -26,10 +26,13 @@ module PxPay
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
         res = send_request
-        p res
-        raise PxPay::Error, "HTTP Status Code: #{res.status}, Body:#{res.body}" unless res.status == 200
+        begin
+          res_json_body = JSON.parse(res.body)
+        rescue StandardError
+          res_json_body = {}
+        end
 
-        response_klass.new(JSON.parse(res.body), raw: res)
+        response_klass.new(res_json_body, raw: res)
       end
 
       private
@@ -78,8 +81,6 @@ module PxPay
       end
 
       def send_request
-        p request_data
-        p request_header
         conn.send request_type, end_point, request_data, request_header
       end
 
