@@ -5,7 +5,7 @@ RSpec.describe PxPay::Response::Pos::Refund do
     res = PxPay::Response::Pos::Refund.new(json_data, nil)
     expect(res.success?).to be true
     expect(res.message).to eq('交易成功')
-    expect(res.transaction_id).to eq('202101230000002')
+    expect(res.order_id).to eq('202101230000002')
     expect(res.px_trade_no).to eq('PXO023892398240')
     expect(res.trade_time).to eq(Time.parse('20210710143259'))
     expect(res.amount).to eq(300)

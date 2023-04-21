@@ -6,7 +6,7 @@ module PxPay
       class Pay < Base
         attr_reader :payment_url, :amount, :trade_amount, :discount_amount, :invo_carrier, :px_trade_no
 
-        def transaction_id
+        def order_id
           @mer_trade_no
         end
 
