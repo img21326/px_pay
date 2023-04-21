@@ -7,6 +7,6 @@ RSpec.describe PxPay::Response::Online::Pay do
     expect(res.message).to eq('交易成功')
     expect(res.bank_transaction_id).to eq('20210304000001')
     expect(res.payment_url).to eq('https://xxx.xxx.xxx/pxplus_ec/page_redirect?data=aHR0cHM6Ly')
-    expect(res.qr_img).to eq('https://xxx.xxx.xxx/ec/qrcode?data=aHR0cHM6Ly')
+    expect(res.qrcode).to eq('https://xxx.xxx.xxx/ec/qrcode?data=aHR0cHM6Ly')
   end
 end

@@ -4,14 +4,10 @@ module PxPay
   module Response
     module Online
       class Pay < Base
-        attr_reader :payment_url
+        attr_reader :payment_url, :qrcode
 
         def bank_transaction_id
           @transaction_id
-        end
-
-        def qr_img
-          @qrcode
         end
       end
     end
