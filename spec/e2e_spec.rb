@@ -15,12 +15,12 @@ RSpec.describe PxPay do
     config.secret_key = ENV['POS_SECRET_KEY']
     config
   end
-  let(:ec_transaction_id) { 1 }
-  let(:pos_transaction_id) { 2 }
+  let(:ec_order_id) { 1 }
+  let(:pos_order_id) { 2 }
 
   it 'online_pay' do
     request = PxPay::Request::Online::Pay.new(
-      order_id: ec_transaction_id,
+      order_id: ec_order_id,
       amount: 100,
       device_type: :pc,
       web_confirm_url: 'http://example.com/confirm',
@@ -38,7 +38,7 @@ RSpec.describe PxPay do
       store_name: 'weiby_test',
       pos_id: 1,
       trade_time: Time.now,
-      transaction_id: pos_transaction_id,
+      order_id: pos_order_id,
       amount: 100,
       pay_token: 'P2A27194D27P53GR1I'
     )
