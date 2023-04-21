@@ -4,11 +4,11 @@ module PxPay
   module Response
     module Online
       class Query < Base
-        def transaction_id
+        def order_id
           @trade_info.dig('mer_trade_no')
         end
 
-        def refund_transaction_id
+        def refund_order_id
           @trade_info.dig('refund_mer_trade_no')
         end
 

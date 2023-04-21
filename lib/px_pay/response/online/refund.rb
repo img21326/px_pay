@@ -6,11 +6,11 @@ module PxPay
       class Refund < Base
         attr_reader :amount, :discount_amount, :trade_amount, :px_trade_no, :refund_px_trade_no
 
-        def transaction_id
+        def order_id
           @mer_trade_no
         end
 
-        def refund_transaction_id
+        def refund_order_id
           @refund_mer_trade_no
         end
 
