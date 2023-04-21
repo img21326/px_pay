@@ -22,12 +22,12 @@ module PxPay
           @pos_id = pos_id.to_s
         end
 
-        def transaction_id=(transaction_id)
-          @transaction_id = transaction_id.to_s
+        def order_id=(order_id)
+          @order_id = order_id.to_s
         end
 
-        def refund_transaction_id=(refund_transaction_id)
-          @refund_transaction_id = refund_transaction_id.to_s
+        def refund_order_id=(refund_order_id)
+          @refund_order_id = refund_order_id.to_s
         end
 
         def px_trade_no=(px_trade_no)
@@ -56,8 +56,8 @@ module PxPay
             store_name: @store_name,
             pos_id: @pos_id,
             pos_trade_time: @trade_time,
-            ori_mer_trade_no: @transaction_id,
-            mer_trade_no: @refund_transaction_id,
+            ori_mer_trade_no: @order_id,
+            mer_trade_no: @refund_order_id,
             ori_px_trade_no: @px_trade_no,
             none_discount_amount: 0,
             none_feedback_amount: 0,
@@ -75,7 +75,7 @@ module PxPay
         end
 
         def hash_string
-          [@store_id, @pos_id, @trade_time, @px_trade_no, @refund_transaction_id, @amount, request_time].join
+          [@store_id, @pos_id, @trade_time, @order_id, @refund_order_id, @amount, request_time].join
         end
       end
     end

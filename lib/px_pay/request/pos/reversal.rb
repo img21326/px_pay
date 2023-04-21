@@ -29,8 +29,8 @@ module PxPay
           end
         end
 
-        def transaction_id=(transaction_id)
-          @transaction_id = transaction_id.to_s
+        def order_id=(order_id)
+          @order_id = order_id.to_s
         end
 
         attr_writer :pay_token, :amount
@@ -43,7 +43,7 @@ module PxPay
             store_name: @store_name,
             pos_id: @pos_id,
             pos_trade_time: @trade_time,
-            mer_trade_no: @transaction_id,
+            mer_trade_no: @order_id,
             pay_token: @pay_token,
             amount: @amount
           )
@@ -62,7 +62,7 @@ module PxPay
         end
 
         def hash_string
-          [@store_id, @pos_id, @trade_time, @transaction_id, @pay_token, @amount, request_time].join
+          [@store_id, @pos_id, @trade_time, @order_id, @pay_token, @amount, request_time].join
         end
       end
     end

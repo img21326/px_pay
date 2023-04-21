@@ -7,7 +7,11 @@ module PxPay
   module Request
     module Pos
       class Query < Base
-        attr_writer :transaction_id, :trade_no_type
+        attr_writer :trade_no_type
+
+        def order_id=(order_id)
+          @order_id = order_id.to_s
+        end
 
         def trade_no_type=(trade_no_type)
           case trade_no_type
@@ -45,11 +49,11 @@ module PxPay
         end
 
         def hash_string
-          [trade_no_type, @transaction_id, @request_time].join
+          [trade_no_type, @order_id, @request_time].join
         end
 
         def end_point
-          "#{super}/#{trade_no_type}/#{@transaction_id}/#{request_time}"
+          "#{super}/#{trade_no_type}/#{@order_id}/#{request_time}"
         end
       end
     end

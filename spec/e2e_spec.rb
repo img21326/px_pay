@@ -20,7 +20,7 @@ RSpec.describe PxPay do
 
   it 'online_pay' do
     request = PxPay::Request::Online::Pay.new(
-      transaction_id: ec_transaction_id,
+      order_id: ec_transaction_id,
       amount: 100,
       device_type: :pc,
       web_confirm_url: 'http://example.com/confirm',
