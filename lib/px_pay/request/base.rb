@@ -33,7 +33,7 @@ module PxPay
           res = nil
         end
 
-        response_klass.new(res_json_body, raw: res)
+        response_klass.new(res_json_body, res)
       end
 
       private

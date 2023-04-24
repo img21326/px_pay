@@ -21,6 +21,10 @@ module PxPay
         @raw.status
       end
 
+      def status
+        @status_code
+      end
+
       def success?
         http_status_code != 500 && status_code == '0000'
       end
