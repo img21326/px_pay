@@ -38,7 +38,7 @@ RSpec.describe PxPay do
       store_name: 'weiby_test',
       pos_id: 1,
       trade_time: Time.now,
-      order_id: pos_order_id,
+      merchant_trade_number: pos_order_id,
       amount: 100,
       pay_token: 'P2A27194D27P53GR1I'
     )

@@ -81,6 +81,8 @@ module PxPay
       end
 
       def send_request
+        puts request_data
+        puts request_header
         conn.send request_type, end_point, request_data, request_header
       end
 

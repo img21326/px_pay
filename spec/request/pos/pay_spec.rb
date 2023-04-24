@@ -5,7 +5,7 @@ RSpec.describe PxPay::Request::Pos::Pay do
       store_name: 'store_name',
       pos_id: '456',
       trade_time: '2017-01-01 00:00:00',
-      order_id: '789',
+      merchant_trade_number: '789',
       pay_token: 'pay_token',
       amount: 100
     )
