@@ -25,11 +25,12 @@ module PxPay
         raise PxPay::Error, 'Missing Store ID' unless config&.store_id
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
-        res = send_request
         begin
+          res = send_request
           res_json_body = JSON.parse(res.body)
-        rescue StandardError
+        rescue Faraday::ConnectionFailed, Faraday::TimeoutError
           res_json_body = {}
+          res = nil
         end
 
         response_klass.new(res_json_body, raw: res)
@@ -81,8 +82,6 @@ module PxPay
       end
 
       def send_request
-        puts request_data
-        puts request_header
         conn.send request_type, end_point, request_data, request_header
       end
 

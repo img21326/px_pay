@@ -5,7 +5,7 @@ RSpec.describe PxPay::Response::Pos::Pay do
     res = PxPay::Response::Pos::Pay.new(json_data, nil)
     expect(res.success?).to be true
     expect(res.message).to eq('交易成功')
-    expect(res.order_id).to eq('202101230000001')
+    expect(res.merchant_trade_number).to eq('202101230000001')
     expect(res.px_trade_no).to eq('PXO023892398239')
     expect(res.amount).to eq(300)
     expect(res.trade_amount).to eq(277)
