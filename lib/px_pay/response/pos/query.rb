@@ -4,7 +4,7 @@ module PxPay
   module Response
     module Pos
       class Query < Base
-        def order_id
+        def mer_trade_no
           @trade_info.dig('mer_trade_no')
         end
 

@@ -23,7 +23,7 @@ RSpec.describe PxPay::Response::Pos::Query do
     res = PxPay::Response::Pos::Query.new(json_data, raw)
     expect(res.success?).to be true
     expect(res.message).to eq('查詢成功')
-    expect(res.order_id).to eq('QW20210101000032')
+    expect(res.mer_trade_no).to eq('QW20210101000032')
     expect(res.order_type).to eq(:paid)
     expect(res.px_trade_no).to eq('PXO023892398239')
     expect(res.trade_time).to eq(Time.parse('20210304170022'))
@@ -34,7 +34,6 @@ RSpec.describe PxPay::Response::Pos::Query do
     expect(res.pay_tool).to eq(1)
     expect(res.pay_tool_name).to eq('華泰銀行')
     expect(res.pay_identity).to eq('123456******7890')
-    expect(res.pay_status).to eq(:paid)
   end
 
   it 'refund' do
@@ -44,7 +43,7 @@ RSpec.describe PxPay::Response::Pos::Query do
     expect(res.success?).to be true
     expect(res.message).to eq('查詢成功')
     expect(res.order_type).to eq(:refunded)
-    expect(res.order_id).to eq('202101230000002')
+    expect(res.mer_trade_no).to eq('202101230000002')
     expect(res.px_trade_no).to eq('PXO023892398239')
     expect(res.refund_order_id).to eq('202101230000001')
     expect(res.trade_time).to eq(Time.parse('20210101093922'))

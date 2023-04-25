@@ -10,8 +10,8 @@ module PxPay
         attr_writer :amount, :web_confirm_url, :web_cancel_url, :app_confirm_url,
                     :app_cancel_url
 
-        def order_id=(order_id)
-          @order_id = order_id.to_s
+        def mer_trade_no=(mer_trade_no)
+          @mer_trade_no = mer_trade_no.to_s
         end
 
         def device_type=(device_type)
@@ -31,7 +31,7 @@ module PxPay
 
         def to_hash
           super.merge(
-            mer_trade_no: @order_id,
+            mer_trade_no: @mer_trade_no,
             amount: @amount,
             device_type: @device_type,
             web_confirm_url: @web_confirm_url || '',
@@ -54,7 +54,7 @@ module PxPay
         end
 
         def hash_string
-          [@order_id, @amount, @device_type, request_time].join
+          [@mer_trade_no, @amount, @device_type, request_time].join
         end
       end
     end
