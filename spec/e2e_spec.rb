@@ -16,11 +16,11 @@ RSpec.describe PxPay do
     config
   end
   let(:ec_order_id) { 1 }
-  let(:pos_order_id) { 2 }
+  let(:pos_order_id) { 222_223_333 }
 
   it 'online_pay' do
     request = PxPay::Request::Online::Pay.new(
-      order_id: ec_order_id,
+      mer_trade_no: ec_order_id,
       amount: 100,
       device_type: :pc,
       web_confirm_url: 'http://example.com/confirm',
@@ -28,7 +28,6 @@ RSpec.describe PxPay do
     )
     request.config = ec_config
     res = request.request
-    p res
     expect(res.success?).to be(true)
   end
 
@@ -45,7 +44,6 @@ RSpec.describe PxPay do
 
     request.config = pos_config
     res = request.request
-    p res
     expect(res.success?).to be(true)
   end
 end
