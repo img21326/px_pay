@@ -2,8 +2,8 @@ RSpec.describe PxPay::Request::Online::Refund do
   it 'basic' do
     time = Time.now
     request = PxPay::Request::Online::Refund.new(
-      order_id: '123',
-      refund_order_id: 'r_123',
+      mer_trade_no: '123',
+      refund_mer_trade_no: 'r_123',
       px_trade_no: '456',
       amount: 100,
       trade_time: time
