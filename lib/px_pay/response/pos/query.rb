@@ -48,17 +48,6 @@ module PxPay
           @trade_info.dig('invo_carrier')
         end
 
-        def pay_status
-          status = @trade_info.dig('pay_status')
-          case status
-          when 0
-            return :unpaid
-          when 1
-            return :paid
-          end
-          nil
-        end
-
         def pay_tool
           @trade_info.dig('pay_tool_info', 'pay_tool')
         end
