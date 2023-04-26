@@ -4,6 +4,8 @@ module PxPay
   module Response
     module Pos
       class Query < Base
+        attr_reader :trade_info
+
         def mer_trade_no
           @trade_info.dig('mer_trade_no')
         end
@@ -29,7 +31,9 @@ module PxPay
         end
 
         def trade_time
-          @trade_time ||= Time.parse(@trade_info.dig('trade_time'))
+          return if @trade_info.dig('px_trade_time').instance_of?(Time)
+
+          @trade_time = Time.parse(@trade_info.dig('px_trade_time'))
         end
 
         def amount
@@ -56,7 +60,7 @@ module PxPay
           @trade_info.dig('pay_tool_info', 'tool_name')
         end
 
-        def pay_identity
+        def pay_tool_identity
           @trade_info.dig('pay_tool_info', 'identity')
         end
       end

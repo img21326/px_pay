@@ -22,7 +22,7 @@ module PxPay
       end
 
       def status
-        return @status_code if @status_code.present?
+        return @status_code unless @status_code.nil?
 
         nil
       end
@@ -32,7 +32,7 @@ module PxPay
       end
 
       def message
-        return @status_message if @status_message.present?
+        return @status_message unless @status_message.nil?
 
         nil
       end

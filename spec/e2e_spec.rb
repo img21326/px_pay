@@ -32,18 +32,29 @@ RSpec.describe PxPay do
   end
 
   it 'pos_pay' do
-    request = PxPay::Request::Pos::Pay.new(
-      store_id: 1,
-      store_name: 'weiby_test',
-      pos_id: 1,
-      trade_time: Time.now,
-      merchant_trade_number: pos_order_id,
-      amount: 100,
-      pay_token: 'P2A27194D27P53GR1I'
-    )
+    request = PxPay::Request::Pos::Pay.new({
+                                             store_id: 1,
+                                             store_name: 'weiby_test',
+                                             pos_id: 1,
+                                             trade_time: Time.now,
+                                             merchant_trade_number: pos_order_id,
+                                             amount: 100,
+                                             pay_token: 'P2A27194D27P53GR1I'
+                                           })
 
     request.config = pos_config
     res = request.request
+    expect(res.success?).to be(true)
+  end
+
+  it 'pos_query' do
+    request = PxPay::Request::Pos::Query.new({
+                                               trade_no: '1#1'
+                                             })
+
+    request.config = pos_config
+    res = request.request
+    p request.send :end_point
     expect(res.success?).to be(true)
   end
 end

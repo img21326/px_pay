@@ -26,19 +26,21 @@ module PxPay
       end
 
       def config
-        @config ||= JkoPay::Config.new
+        @config ||= PxPay::Config.new
       end
 
       def request
         raise PxPay::Error, 'Missing Store ID' unless config&.store_id
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
+        res = send_request
         begin
-          res = send_request
           res_json_body = JSON.parse(res.body)
         rescue StandardError
           res_json_body = {}
         end
+
+        p res
 
         response_klass.new(res_json_body, res)
       end
@@ -83,9 +85,7 @@ module PxPay
       end
 
       def conn
-        @conn ||= Faraday.new do |faraday|
-          faraday.options.timeout = 15
-        end
+        @conn ||= Faraday.new
       end
 
       def send_request
@@ -93,6 +93,8 @@ module PxPay
       end
 
       def request_data
+        return nil unless to_hash
+
         JSON.dump(to_hash)
       end
 
