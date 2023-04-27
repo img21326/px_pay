@@ -4,9 +4,17 @@ module PxPay
   module Response
     module Pos
       class Refund < Base
-        attr_reader :amount, :discount_amount, :trade_amount, :invo_carrier, :px_trade_no
+        attr_reader :amount, :discount_amount, :trade_amount
 
-        def order_id
+        def carrier
+          @invo_carrier
+        end
+
+        def bank_transaction_id
+          @px_trade_no
+        end
+
+        def trade_number
           @mer_trade_no
         end
       end

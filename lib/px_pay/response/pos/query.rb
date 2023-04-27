@@ -6,11 +6,11 @@ module PxPay
       class Query < Base
         attr_reader :trade_info
 
-        def mer_trade_no
+        def trade_number
           @trade_info.dig('mer_trade_no')
         end
 
-        def refund_order_id
+        def refund_trade_number
           @trade_info.dig('refund_mer_trade_no')
         end
 
@@ -26,7 +26,7 @@ module PxPay
           nil
         end
 
-        def px_trade_no
+        def bank_transaction_id
           @trade_info.dig('px_trade_no')
         end
 
@@ -48,7 +48,7 @@ module PxPay
           @trade_info.dig('discount_amount')
         end
 
-        def invo_carrier
+        def carrier
           @trade_info.dig('invo_carrier')
         end
 

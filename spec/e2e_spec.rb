@@ -49,7 +49,7 @@ RSpec.describe PxPay do
 
   it 'pos_query' do
     request = PxPay::Request::Pos::Query.new({
-                                               trade_no: '1#1'
+                                               trade_number: '1#1'
                                              })
 
     request.config = pos_config

@@ -5,7 +5,7 @@ RSpec.describe PxPay::Request::Pos::Reversal do
       store_id: '123',
       store_name: 'store_name',
       pos_id: '456',
-      merchant_trade_number: 'merchant_trade_number_id',
+      trade_number: 'merchant_trade_number_id',
       trade_time: time,
       pay_token: 'pay_token',
       amount: 100

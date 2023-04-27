@@ -9,8 +9,8 @@ module PxPay
       class Query < Base
         attr_writer :trade_no_type
 
-        def trade_no=(trade_no)
-          @trade_no = trade_no.to_s
+        def trade_number=(trade_number)
+          @trade_number = trade_number.to_s
         end
 
         def trade_no_type=(trade_no_type)
@@ -45,11 +45,11 @@ module PxPay
         end
 
         def hash_string
-          [trade_no_type, @trade_no, @request_time].join
+          [trade_no_type, @trade_number, @request_time].join
         end
 
         def end_point
-          "#{super}/#{trade_no_type}/#{@trade_no}/#{request_time}"
+          "#{super}/#{trade_no_type}/#{@trade_number}/#{request_time}"
         end
       end
     end

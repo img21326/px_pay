@@ -4,10 +4,18 @@ module PxPay
   module Response
     module Pos
       class Pay < Base
-        attr_reader :amount, :trade_amount, :discount_amount, :invo_carrier, :px_trade_no
+        attr_reader :amount, :trade_amount, :discount_amount
 
-        def merchant_trade_number
+        def bank_transaction_id
+          @px_trade_no
+        end
+
+        def trade_number
           @mer_trade_no
+        end
+
+        def carrier
+          @invo_carrier
         end
 
         def pay_tool

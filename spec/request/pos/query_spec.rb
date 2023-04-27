@@ -3,7 +3,7 @@ RSpec.describe PxPay::Request::Pos::Query do
     time = Time.now
     request = PxPay::Request::Pos::Query.new(
       trade_no_type: :Merchant,
-      trade_no: '123'
+      trade_number: '123'
     )
     req_time = request.send(:request_time)
     hash = request.send(:to_hash)

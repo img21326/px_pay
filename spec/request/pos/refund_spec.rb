@@ -5,9 +5,9 @@ RSpec.describe PxPay::Request::Pos::Refund do
       store_id: '123',
       store_name: 'store_name',
       pos_id: '456',
-      merchant_trade_number: 'merchant_trade_number_id',
-      refund_merchant_trade_number: 'refund_merchant_trade_number_id',
-      px_trade_no: 'px_trade_no',
+      trade_number: 'merchant_trade_number_id',
+      refund_trade_number: 'refund_merchant_trade_number_id',
+      bank_transaction_id: 'px_trade_no',
       trade_time: time,
       amount: 100
     )
