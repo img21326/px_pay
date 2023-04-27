@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'cgi'
 require 'faraday'
-require 'digest'
 require 'json'
 require 'px_pay/utils'
 
@@ -21,14 +19,6 @@ module PxPay
         post_initialize
       end
 
-      def configure(conf)
-        @config = conf
-      end
-
-      def config
-        @config ||= PxPay::Config.new
-      end
-
       def request
         raise PxPay::Error, 'Missing Store ID' unless config&.store_id
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
@@ -40,14 +30,22 @@ module PxPay
           res_json_body = {}
         end
 
-        p res
-
         response_klass.new(res_json_body, res)
+      end
+
+      def trade_time=(trade_time)
+        @trade_time = if trade_time.is_a? Time
+                        trade_time.strftime('%Y%m%d%H%M%S')
+                      else
+                        trade_time
+                      end
       end
 
       private
 
-      def post_initialize; end
+      def post_initialize
+        @config = PxPay::Config.new
+      end
 
       def request_type
         :post
@@ -68,8 +66,8 @@ module PxPay
       def request_header
         {
           'Content-Type' => 'application/json;charset=utf-8;',
-          'PX-MerCode' => config&.store_id,
-          'PX-MerEnName' => config&.store_name,
+          'PX-MerCode' => config.store_id,
+          'PX-MerEnName' => config.store_name,
           'PX-SignValue' => sign_value
         }
       end

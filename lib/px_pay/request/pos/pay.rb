@@ -19,21 +19,11 @@ module PxPay
           @pos_id = pos_id.to_s
         end
 
-        def trade_time=(trade_time)
-          if trade_time.instance_of? Time
-            @trade_time = trade_time.strftime('%Y%m%d%H%M%S')
-          elsif trade_time.instance_of? String
-            @trade_time = Time.parse(trade_time).strftime('%Y%m%d%H%M%S')
-          else
-            raise ArgumentError, 'trade_time must be Time or String'
-          end
-        end
-
         def merchant_trade_number=(merchant_trade_number)
           @merchant_trade_number = merchant_trade_number.to_s
         end
 
-        attr_writer :pay_token, :amount, :remark1, :remark2, :remark3
+        attr_writer :pay_token, :amount
 
         private
 
@@ -44,17 +34,10 @@ module PxPay
             pos_id: @pos_id,
             pos_trade_time: @trade_time,
             mer_trade_no: @merchant_trade_number,
-            gate_trade_no: nil,
             pay_token: @pay_token,
-            trans_id: nil,
             amount: @amount,
             none_discount_amount: 0,
-            none_feedback_amount: 0,
-            remark1: @remark1 || '',
-            remark2: @remark2 || '',
-            remark3: @remark3 || '',
-            marketing: [],
-            products: []
+            none_feedback_amount: 0
           )
         end
 

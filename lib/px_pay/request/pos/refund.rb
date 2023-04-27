@@ -8,7 +8,7 @@ module PxPay
   module Request
     module Pos
       class Refund < Base
-        attr_writer :amount, :remark1, :remark2, :remark3
+        attr_writer :amount
 
         def store_id=(store_id)
           @store_id = store_id.to_s
@@ -34,16 +34,6 @@ module PxPay
           @px_trade_no = px_trade_no.to_s
         end
 
-        def trade_time=(trade_time)
-          if trade_time.instance_of? Time
-            @trade_time = trade_time.strftime('%Y%m%d%H%M%S')
-          elsif trade_time.instance_of? String
-            @trade_time = Time.parse(trade_time).strftime('%Y%m%d%H%M%S')
-          else
-            raise ArgumentError, 'trade_time must be Time or String'
-          end
-        end
-
         private
 
         def response_klass
@@ -61,12 +51,7 @@ module PxPay
             ori_px_trade_no: @px_trade_no,
             none_discount_amount: 0,
             none_feedback_amount: 0,
-            amount: @amount,
-            remark1: @remark1 || '',
-            remark2: @remark2 || '',
-            remark3: @remark3 || '',
-            marketing: [],
-            products: []
+            amount: @amount
           )
         end
 

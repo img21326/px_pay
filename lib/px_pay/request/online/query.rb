@@ -12,7 +12,7 @@ module PxPay
         end
 
         def trade_no_type=(trade_no_type)
-          raise ArgumentError, 'trade_no_type must be Merchant or Px' unless %w[Merchant Px].include?(trade_no_type)
+          raise ArgumentError, 'trade_no_type must be Merchant or PX' unless %w[Merchant PX].include?(trade_no_type)
 
           @trade_no_type = trade_no_type
         end

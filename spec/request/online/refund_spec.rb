@@ -1,12 +1,11 @@
 RSpec.describe PxPay::Request::Online::Refund do
   it 'basic' do
-    time = Time.now
     request = PxPay::Request::Online::Refund.new(
       mer_trade_no: '123',
       refund_mer_trade_no: 'r_123',
       px_trade_no: '456',
       amount: 100,
-      trade_time: time
+      trade_time: '20170101000000'
     )
     req_time = request.send(:request_time)
     hash = request.send(:to_hash)
@@ -14,7 +13,7 @@ RSpec.describe PxPay::Request::Online::Refund do
     expect(hash[:amount]).to eq(100)
     expect(hash[:px_trade_no]).to eq('456')
     expect(hash[:refund_mer_trade_no]).to eq('r_123')
-    expect(hash[:trade_time]).to eq(time.strftime('%Y%m%d%H%M%S'))
-    expect(request.send(:hash_string)).to eq("123456#{time.strftime('%Y%m%d%H%M%S')}r_123100#{req_time}")
+    expect(hash[:trade_time]).to eq('20170101000000')
+    expect(request.send(:hash_string)).to eq("12345620170101000000r_123100#{req_time}")
   end
 end

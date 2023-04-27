@@ -14,16 +14,12 @@ module PxPay
         end
 
         def trade_no_type=(trade_no_type)
-          case trade_no_type
-          when :Merchant
-            @trade_no_type = 1
-          when :Gateway
-            @trade_no_type = 2
-          when :Px
-            @trade_no_type = 3
-          else
-            raise ArgumentError, 'trade_no_type must be Merchant or Px'
-          end
+          @trade_no_type = {
+            Merchant: 1,
+            Gateway: 2,
+            Px: 3
+          }[trade_no_type]
+          raise ArgumentError, 'trade_no_type must be Merchant or Px' unless @trade_no_type
         end
 
         def trade_no_type

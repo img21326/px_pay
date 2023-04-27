@@ -16,8 +16,6 @@ module PxPay
       end
 
       def http_status_code
-        return 500 unless @raw
-
         @raw.status
       end
 
@@ -28,17 +26,15 @@ module PxPay
       end
 
       def success?
-        http_status_code != 500 && status_code == '0000'
+        return false unless @status_code
+
+        @status_code == '0000'
       end
 
       def message
         return @status_message unless @status_message.nil?
 
         nil
-      end
-
-      def need_cancel?
-        http_status_code == 500
       end
     end
   end

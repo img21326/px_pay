@@ -15,16 +15,12 @@ module PxPay
         end
 
         def device_type=(device_type)
-          @device_type = case device_type
-                         when :pc
-                           1
-                         when :mobile
-                           2
-                         when :app
-                           3
-                         else
-                           raise ArgumentError, 'device_type must be :pc, :mobile or :app'
-                         end
+          @device_type = {
+            pc: 1,
+            mobile: 2,
+            app: 3
+          }[device_type]
+          raise ArgumentError, 'device_type must be :pc, :mobile or :app' unless @device_type
         end
 
         private

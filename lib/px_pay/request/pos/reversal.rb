@@ -19,16 +19,6 @@ module PxPay
           @pos_id = pos_id.to_s
         end
 
-        def trade_time=(trade_time)
-          if trade_time.instance_of? Time
-            @trade_time = trade_time.strftime('%Y%m%d%H%M%S')
-          elsif trade_time.instance_of? String
-            @trade_time = Time.parse(trade_time).strftime('%Y%m%d%H%M%S')
-          else
-            raise ArgumentError, 'trade_time must be Time or String'
-          end
-        end
-
         def merchant_trade_number=(merchant_trade_number)
           @merchant_trade_number = merchant_trade_number.to_s
         end
