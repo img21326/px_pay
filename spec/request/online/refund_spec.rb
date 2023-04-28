@@ -1,9 +1,9 @@
 RSpec.describe PxPay::Request::Online::Refund do
   it 'basic' do
     request = PxPay::Request::Online::Refund.new(
-      mer_trade_no: '123',
-      refund_mer_trade_no: 'r_123',
-      px_trade_no: '456',
+      order_id: '123',
+      refund_order_id: 'r_123',
+      bank_trade_id: '456',
       amount: 100,
       trade_time: '20170101000000'
     )

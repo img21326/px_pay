@@ -24,7 +24,7 @@ module PxPay
           nil
         end
 
-        def px_trade_no
+        def bank_trade_id
           @trade_info.dig('px_trade_no')
         end
 
@@ -48,7 +48,7 @@ module PxPay
           @trade_info.dig('discount_amount')
         end
 
-        def invo_carrier
+        def carrier
           @trade_info.dig('invo_carrier')
         end
 
@@ -71,11 +71,11 @@ module PxPay
           @trade_info.dig('pay_tool_info', 'tool_name')
         end
 
-        def pay_identity
+        def card_number
           @trade_info.dig('pay_tool_info', 'identity')
         end
 
-        def refund_px_trade_no
+        def bank_refund_trade_id
           @trade_info.dig('refund_px_trade_no')
         end
       end

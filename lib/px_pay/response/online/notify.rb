@@ -8,10 +8,22 @@ module PxPay
           @raw.headers['PX-SignValue']
         end
 
-        attr_reader :mer_trade_no, :px_trade_no, :amount, :trade_amount, :discount_amount, :invo_carrier
+        attr_reader :amount, :trade_amount, :discount_amount
+
+        def order_id
+          @mer_trade_no
+        end
+
+        def bank_trade_id
+          @px_trade_no
+        end
 
         def bank_transaction_id
           @transaction_id
+        end
+
+        def carrier
+          @invo_carrier
         end
 
         def trade_time
@@ -26,7 +38,7 @@ module PxPay
           @pay_tool_info.dig('tool_name')
         end
 
-        def pay_identity
+        def card_number
           @pay_tool_info.dig('identity')
         end
 
