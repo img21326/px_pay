@@ -7,7 +7,7 @@ module PxPay
   module Request
     module Online
       class Pay < Base
-        attr_writer :amount, :web_confirm_url, :web_cancel_url, :app_confirm_url,
+        attr_writer :web_confirm_url, :web_cancel_url, :app_confirm_url,
                     :app_cancel_url
 
         def order_id=(order_id)
@@ -21,6 +21,10 @@ module PxPay
             app: 3
           }[device_type]
           raise ArgumentError, 'device_type must be :pc, :mobile or :app' unless @device_type
+        end
+
+        def amount=(amount)
+          @amount = amount.to_i
         end
 
         private

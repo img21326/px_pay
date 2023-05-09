@@ -8,7 +8,7 @@ module PxPay
   module Request
     module Online
       class Refund < Base
-        attr_writer :amount, :remark1, :remark2, :remark3
+        attr_writer :remark1, :remark2, :remark3
 
         def bank_trade_id=(bank_trade_id)
           @bank_trade_id = bank_trade_id.to_s
@@ -22,6 +22,10 @@ module PxPay
           @refund_order_id = refund_order_id.to_s
         end
 
+        def amount=(amount)
+          @amount = amount.to_i
+        end
+
         private
 
         def to_hash
@@ -29,7 +33,7 @@ module PxPay
             mer_trade_no: @order_id,
             px_trade_no: @bank_trade_id,
             refund_mer_trade_no: @refund_order_id,
-            amount: @amount.to_i,
+            amount: @amount,
             trade_time: @trade_time,
             remark1: @remark1 || '',
             remark2: @remark2 || '',

@@ -8,8 +8,6 @@ module PxPay
   module Request
     module Pos
       class Refund < Base
-        attr_writer :amount
-
         def store_id=(store_id)
           @store_id = store_id.to_s
         end
@@ -32,6 +30,10 @@ module PxPay
 
         def bank_transaction_id=(bank_transaction_id)
           @bank_transaction_id = bank_transaction_id.to_s
+        end
+
+        def amount=(amount)
+          @amount = amount.to_i
         end
 
         private

@@ -23,7 +23,11 @@ module PxPay
           @trade_number = trade_number.to_s
         end
 
-        attr_writer :pay_token, :amount
+        def amount=(amount)
+          @amount = amount.to_i
+        end
+
+        attr_writer :pay_token
 
         private
 
