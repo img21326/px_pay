@@ -30,15 +30,16 @@ module PxPay
         private
 
         def to_hash
-          super.merge(
+          hash = super.merge(
             mer_trade_no: @order_id,
             amount: @amount,
             device_type: @device_type,
-            web_confirm_url: @web_confirm_url || '',
-            web_cancel_url: @web_cancel_url || '',
-            app_confirm_url: @app_confirm_url || '',
-            app_cancel_url: @app_cancel_url || ''
           )
+          hash[:web_cancel_url] = @web_cancel_url if @web_cancel_url
+          hash[:web_confirm_url] = @web_confirm_url if @web_confirm_url
+          hash[:app_cancel_url] = @app_cancel_url if @app_cancel_url
+          hash[:app_confirm_url] = @app_confirm_url if @app_confirm_url
+          hash
         end
 
         def request_action
