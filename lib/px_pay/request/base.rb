@@ -41,6 +41,12 @@ module PxPay
                       end
       end
 
+      def request_data
+        return nil unless to_hash
+
+        JSON.dump(to_hash)
+      end
+
       private
 
       def post_initialize
@@ -88,12 +94,6 @@ module PxPay
 
       def send_request
         conn.send request_type, end_point, request_data, request_header
-      end
-
-      def request_data
-        return nil unless to_hash
-
-        JSON.dump(to_hash)
       end
 
       def sign_value
