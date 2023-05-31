@@ -4,10 +4,6 @@ module PxPay
   module Response
     module Online
       class Notify < Base
-        def sign_value
-          @raw.headers['PX-SignValue']
-        end
-
         attr_reader :amount, :trade_amount, :discount_amount
 
         def order_id

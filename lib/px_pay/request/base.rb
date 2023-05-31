@@ -24,13 +24,11 @@ module PxPay
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
         res = send_request
-        begin
-          res_json_body = JSON.parse(res.body)
-        rescue StandardError
-          res_json_body = {}
-        end
+        raise PxPay::Error, "status: #{res.status}, message: #{res.body}" if res.status != 200
 
-        response_klass.new(res_json_body, res)
+        res_json_body = JSON.parse(res.body)
+
+        response_klass.new(res_json_body, res.body)
       end
 
       def trade_time=(trade_time)
@@ -45,8 +43,9 @@ module PxPay
         {
           'request_type' => request_type,
           'end_point' => end_point,
+          'request_time' => request_time,
           'request_data' => request_data,
-          'request_header' => request_header,
+          'request_header' => request_header
         }
       end
 

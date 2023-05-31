@@ -15,10 +15,6 @@ module PxPay
         end
       end
 
-      def http_status_code
-        @raw.status
-      end
-
       def status
         return @status_code unless @status_code.nil?
 
