@@ -24,7 +24,7 @@ module PxPay
         private
 
         def to_hash
-          {}
+          nil
         end
 
         def response_klass
