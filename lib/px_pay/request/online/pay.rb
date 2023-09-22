@@ -33,7 +33,8 @@ module PxPay
           hash = super.merge(
             mer_trade_no: @order_id,
             amount: @amount,
-            device_type: @device_type
+            device_type: @device_type,
+            store_id: store_id,
           )
           hash[:web_cancel_url] = @web_cancel_url if @web_cancel_url
           hash[:web_confirm_url] = @web_confirm_url if @web_confirm_url
@@ -57,7 +58,7 @@ module PxPay
         end
 
         def hash_string
-          [@order_id, @amount, @device_type, request_time].join
+          [@order_id, @amount, @device_type, request_time, store_id].join
         end
       end
     end

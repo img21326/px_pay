@@ -20,7 +20,7 @@ module PxPay
       end
 
       def request
-        raise PxPay::Error, 'Missing Store ID' unless config&.store_id
+        raise PxPay::Error, 'Missing Merchant Account' unless config&.account
         raise PxPay::Error, 'Missing Store Name' unless config&.store_name
 
         res = send_request
@@ -74,7 +74,7 @@ module PxPay
       def request_header
         {
           'Content-Type' => 'application/json;charset=utf-8;',
-          'PX-MerCode' => config.store_id,
+          'PX-MerCode' => config.account,
           'PX-MerEnName' => config.store_name,
           'PX-SignValue' => sign_value
         }
@@ -82,6 +82,10 @@ module PxPay
 
       def request_time
         @request_time ||= Time.now.strftime('%Y%m%d%I%M%S')
+      end
+
+      def store_id
+        @store_id || config.store_id
       end
 
       def to_hash

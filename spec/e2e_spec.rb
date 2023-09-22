@@ -2,7 +2,7 @@ require 'securerandom'
 RSpec.describe PxPay do
   let!(:ec_config) do
     config = PxPay::Config.new
-    config.store_id = ENV['STORE_ID']
+    config.account = ENV['STORE_ID']
     config.store_name = 'S0006787'
     config.secret_key = ENV['SECRET_KEY']
     config
@@ -10,7 +10,7 @@ RSpec.describe PxPay do
 
   let!(:pos_config) do
     config = PxPay::Config.new
-    config.store_id = ENV['POS_STORE_ID']
+    config.account = ENV['POS_STORE_ID']
     config.store_name = 'S0006786'
     config.secret_key = ENV['POS_SECRET_KEY']
     config

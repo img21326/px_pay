@@ -33,7 +33,7 @@ module PxPay
 
         def to_hash
           super.merge(
-            store_id: @store_id,
+            store_id: store_id,
             store_name: @store_name,
             pos_id: @pos_id,
             pos_trade_time: @trade_time,
@@ -58,7 +58,7 @@ module PxPay
         end
 
         def hash_string
-          [@store_id, @pos_id, @trade_time, @trade_number, @pay_token, @amount, request_time].join
+          [store_id, @pos_id, @trade_time, @trade_number, @pay_token, @amount, request_time].join
         end
       end
     end
