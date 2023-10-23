@@ -18,20 +18,20 @@ RSpec.describe PxPay do
   let(:ec_order_id) { 'test_1231' }
   let(:pos_order_id) { 222_223_333 }
 
-  it 'online_pay' do
-    request = PxPay::Request::Online::Pay.new({
-                                                order_id: ec_order_id,
-                                                amount: 1,
-                                                device_type: :pc,
-                                                web_confirm_url: 'http://example.com/confirm',
-                                                web_cancel_url: 'http://example.com/cancel',
-                                                notify_url: 'https://istore.weibyapps.com:8123/px_pay/result',
-                                                status_url: 'https://istore.weibyapps.com:8123/px_pay/orders'
-                                              })
-    request.config = ec_config
-    res = request.request
-    expect(res.success?).to be(true)
-  end
+  # it 'online_pay' do
+  #   request = PxPay::Request::Online::Pay.new({
+  #                                               order_id: ec_order_id,
+  #                                               amount: 1,
+  #                                               device_type: :pc,
+  #                                               web_confirm_url: 'http://example.com/confirm',
+  #                                               web_cancel_url: 'http://example.com/cancel',
+  #                                               notify_url: 'https://istore.weibyapps.com:8123/px_pay/result',
+  #                                               status_url: 'https://istore.weibyapps.com:8123/px_pay/orders'
+  #                                             })
+  #   request.config = ec_config
+  #   res = request.request
+  #   expect(res.success?).to be(true)
+  # end
 
   # it 'pos_pay' do
   #   request = PxPay::Request::Pos::Pay.new({

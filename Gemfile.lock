@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    px_pay (0.0.1)
+    px_pay (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -54,4 +54,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.2.11
+   2.2.17
